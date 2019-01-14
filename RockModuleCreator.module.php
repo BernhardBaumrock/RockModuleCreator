@@ -12,12 +12,14 @@ class RockModuleCreator extends Process {
     $form = $this->modules->get('InputfieldForm');
 
     $url = 'https://github.com/BernhardBaumrock/RockMigrationsDemo/archive/master.zip';
+    $author = 'Bernhard Baumrock';
     if($this->input->post->createNew) {
       // try to create the module
       $this->createModule();
 
       // if it was not successful we populate fields with input data
       $url = $this->input->post->moduleURL;
+      $author = $this->input->post->moduleAuthor;
     }
 
     $form->add([
@@ -35,7 +37,7 @@ class RockModuleCreator extends Process {
           'type' => 'text',
           'label' => 'Author',
           'columnWidth' => 33,
-          'value' => $this->input->post->moduleAuthor,
+          'value' => $author,
         ],
         'moduleURL' => [
           'type' => 'text',
